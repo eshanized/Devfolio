@@ -117,6 +117,7 @@ export const translations = {
       },
       footer: {
         linesOfCode: "lines of code",
+        sponsor: 'Sponsor',
         madeWith: "Made with",
         by: "by",
         languages: {
@@ -246,6 +247,7 @@ export const translations = {
       },
       footer: {
         linesOfCode: "লাইন কোড",
+        sponsor: 'স্পনসর',
         madeWith: "তৈরি করেছেন",
         by: "দ্বারা",
         languages: {

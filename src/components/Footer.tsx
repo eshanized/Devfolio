@@ -13,34 +13,39 @@ interface LanguageStats {
 
 export function Footer() {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
-  const [stats] = useState<LanguageStats[]>([
-    { 
-      name: t('footer.languages.TypeScript'),
-      lines: 2150,
-      icon: FileType,
-      color: theme === 'dark' ? '#3178C6' : '#235A97'
-    },
-    { 
-      name: t('footer.languages.JavaScript'),
-      lines: 180,
-      icon: FileJson,
-      color: theme === 'dark' ? '#F7DF1E' : '#C9B306'
-    },
-    { 
-      name: t('footer.languages.CSS'),
-      lines: 120,
-      icon: Palette,
-      color: theme === 'dark' ? '#38BDF8' : '#2563EB'
-    },
-    { 
-      name: t('footer.languages.HTML'),
-      lines: 90,
-      icon: FileHtml,
-      color: theme === 'dark' ? '#E34F26' : '#C4432D'
-    }
-  ]);
+  const [stats, setStats] = useState<LanguageStats[]>([]);
+
+  // Update stats when language changes
+  useEffect(() => {
+    setStats([
+      {
+        name: t('footer.languages.TypeScript'),
+        lines: 2150,
+        icon: FileType,
+        color: theme === 'dark' ? '#3178C6' : '#235A97'
+      },
+      {
+        name: t('footer.languages.JavaScript'),
+        lines: 180,
+        icon: FileJson,
+        color: theme === 'dark' ? '#F7DF1E' : '#C9B306'
+      },
+      {
+        name: t('footer.languages.CSS'),
+        lines: 120,
+        icon: Palette,
+        color: theme === 'dark' ? '#38BDF8' : '#2563EB'
+      },
+      {
+        name: t('footer.languages.HTML'),
+        lines: 90,
+        icon: FileHtml,
+        color: theme === 'dark' ? '#E34F26' : '#C4432D'
+      }
+    ]);
+  }, [t, theme, i18n.language]); // Update when language or theme changes
 
   const totalLines = stats.reduce((acc, curr) => acc + curr.lines, 0);
 
@@ -54,14 +59,13 @@ export function Footer() {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-3xl mx-auto"
         >
-          {/* Language Stats */}
           <div className="mb-6">
             <div className="flex items-center justify-center gap-2 mb-3">
               <Code2 className={`w-4 h-4 ${
                 theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
               }`} />
               <span className="text-sm font-medium">
-                {totalLines.toLocaleString()} lines of code
+                {totalLines.toLocaleString()} {t('footer.linesOfCode')}
               </span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
@@ -71,7 +75,7 @@ export function Footer() {
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   whileHover={{ scale: 1.05 }}
-                  transition={{ 
+                  transition={{
                     delay: index * 0.1,
                     type: "spring",
                     stiffness: 300,
@@ -83,13 +87,13 @@ export function Footer() {
                       : 'bg-gray-100/80 text-gray-700'
                   }`}
                   style={{
-                    boxShadow: theme === 'dark' 
+                    boxShadow: theme === 'dark'
                       ? `0 0 10px ${color}20`
                       : `0 2px 4px ${color}10`
                   }}
                 >
-                  <Icon 
-                    className="w-3.5 h-3.5" 
+                  <Icon
+                    className="w-3.5 h-3.5"
                     style={{ color }}
                   />
                   <span className="font-medium">{name}</span>
@@ -101,13 +105,12 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Copyright */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-sm select-none"
           >
-            © {year} Made with{' '}
+            © {year} {t('footer.madeWith')}{' '}
             <motion.span
               animate={{
                 scale: [1, 1.2, 1],
@@ -122,7 +125,7 @@ export function Footer() {
             >
               <Heart className="w-4 h-4 inline-block -mt-1" />
             </motion.span>
-            {' '}by{' '}
+            {' '}{t('footer.by')}{' '}
             <motion.a
               href="https://github.com/eshanized"
               target="_blank"

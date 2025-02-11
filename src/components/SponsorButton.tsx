@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { Heart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function SponsorButton() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <motion.a
@@ -21,7 +23,7 @@ export function SponsorButton() {
       }`}
     >
       <Heart className="w-5 h-5 animate-pulse" fill="currentColor" />
-      <span className="font-medium">Sponsor</span>
+      <span className="font-medium">{t('sponsor')}</span>
     </motion.a>
   );
 }
