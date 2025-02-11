@@ -11,7 +11,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react()],
 
     // Base public path when served in development or production
-    base: './',
+    base: '/devfolio/',
 
     // Directory to serve as plain static assets
     publicDir: 'public',
