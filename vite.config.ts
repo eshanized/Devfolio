@@ -7,11 +7,10 @@ import type { UserConfig } from 'vite';
 export default defineConfig(({ command, mode }): UserConfig => {
   // Load env file based on `mode` in the current working directory.
   const env = loadEnv(mode, process.cwd(), '');
-  // Determine if we're in development or production
   const isDev = command === 'serve';
   return {
     plugins: [react()],
-    base: '/devfolio/',
+    base: isDev ? '/' : '/devfolio/',
     publicDir: 'public',
 
     resolve: {
@@ -52,9 +51,17 @@ export default defineConfig(({ command, mode }): UserConfig => {
       assetsDir: 'assets',
       rollupOptions: {
         output: {
-          entryFileNames: `assets/[name].[hash].js`,
-          chunkFileNames: `assets/[name].[hash].js`,
-          assetFileNames: `assets/[name].[hash].[ext]`,
+          // Ensure consistent file naming
+          entryFileNames: 'assets/[name].[hash].mjs',
+          chunkFileNames: 'assets/[name].[hash].mjs',
+          assetFileNames: (assetInfo) => {
+            const info = assetInfo.name.split('.');
+            const ext = info[info.length - 1];
+            if (/\.(css)$/i.test(assetInfo.name)) {
+              return `assets/styles.[hash].${ext}`;
+            }
+            return `assets/[name].[hash].${ext}`;
+          },
         },
       },
     },
