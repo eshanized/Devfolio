@@ -1,15 +1,32 @@
 # DevFolio - Modern Developer Portfolio
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/eshanized/devfolio)](https://github.com/eshanized/devfolio/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/eshanized/devfolio)](https://github.com/eshanized/devfolio/network)
-[![GitHub issues](https://img.shields.io/github/issues/eshanized/devfolio)](https://github.com/eshanized/devfolio/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/eshanized/devfolio)](https://github.com/eshanized/devfolio/pulls)
-[![Deploy Status](https://github.com/eshanized/devfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/eshanized/devfolio/actions/workflows/deploy.yml)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18.3.1-blue)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.4.2-blue)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue)](https://tailwindcss.com/)
+<div align="center">
+
+<!-- License and Version Badges -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
+
+<!-- GitHub Stats Badges -->
+[![GitHub stars](https://img.shields.io/github/stars/eshanized/devfolio?style=for-the-badge&logo=github&color=yellow)](https://github.com/eshanized/devfolio/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/eshanized/devfolio?style=for-the-badge&logo=github&color=blue)](https://github.com/eshanized/devfolio/network)
+[![GitHub issues](https://img.shields.io/github/issues/eshanized/devfolio?style=for-the-badge&logo=github&color=red)](https://github.com/eshanized/devfolio/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/eshanized/devfolio?style=for-the-badge&logo=github&color=green)](https://github.com/eshanized/devfolio/pulls)
+
+<!-- CI/CD Badge -->
+[![Deploy Status](https://img.shields.io/github/actions/workflow/status/eshanized/devfolio/deploy.yml?style=for-the-badge&logo=github-actions&label=deploy)](https://github.com/eshanized/devfolio/actions/workflows/deploy.yml)
+
+<!-- Tech Stack Badges -->
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4.2-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.1-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+<!-- Additional Tech Badges -->
+[![ESLint](https://img.shields.io/badge/ESLint-8.x-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org)
+[![Prettier](https://img.shields.io/badge/Prettier-3.x-F7B93E?style=for-the-badge&logo=prettier&logoColor=black)](https://prettier.io)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.x-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+
+</div>
 
 A beautiful, fully featured, and production-ready portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
