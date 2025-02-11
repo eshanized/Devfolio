@@ -7,13 +7,11 @@ import type { UserConfig } from 'vite';
 export default defineConfig(({ command, mode }): UserConfig => {
   // Load env file based on `mode` in the current working directory.
   const env = loadEnv(mode, process.cwd(), '');
-
   // Determine if we're in development or production
   const isDev = command === 'serve';
-
   return {
     plugins: [react()],
-    base: '/devfolio/',
+    base: isDev ? '/' : '/devfolio/',
     publicDir: 'public',
 
     resolve: {

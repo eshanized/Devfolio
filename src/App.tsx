@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Skills } from './pages/Skills';
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename="/devfolio">
         <div className="relative min-h-screen transition-colors dark:bg-gray-900 bg-gray-50 font-lato">
           <Navbar />
           <main className="pt-20 pb-16">
