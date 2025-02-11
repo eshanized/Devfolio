@@ -100,11 +100,11 @@ export const settings = {
   socialMedia: [
     {
       platform: 'Twitter',
-      url: 'https://twitter.com/yourusername'
+      url: 'https://twitter.com/eshanized'
     },
     {
       platform: 'LinkedIn',
-      url: 'https://linkedin.com/in/yourusername'
+      url: 'https://linkedin.com/in/eshanized'
     }
   ] as SocialMedia[],
 };
