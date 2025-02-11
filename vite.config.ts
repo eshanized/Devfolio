@@ -11,7 +11,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
   const isDev = command === 'serve';
   return {
     plugins: [react()],
-    base: isDev ? '/' : '/devfolio/',
+    base: '/devfolio/',
     publicDir: 'public',
 
     resolve: {
@@ -45,21 +45,16 @@ export default defineConfig(({ command, mode }): UserConfig => {
 
     build: {
       outDir: 'dist',
-      cssCodeSplit: true,
+      cssCodeSplit: false,
       reportCompressedSize: true,
-      // Use command to determine build settings
       sourcemap: isDev,
-      minify: isDev ? false : 'esbuild',
+      minify: 'esbuild',
+      assetsDir: 'assets',
       rollupOptions: {
         output: {
-          manualChunks: (id) => {
-            if (id.includes('node_modules')) {
-              if (id.includes('react')) return 'react-vendor';
-              if (id.includes('framer-motion')) return 'animation-vendor';
-              if (id.includes('i18next')) return 'i18n-vendor';
-              return 'vendor';
-            }
-          },
+          entryFileNames: `assets/[name].[hash].js`,
+          chunkFileNames: `assets/[name].[hash].js`,
+          assetFileNames: `assets/[name].[hash].[ext]`,
         },
       },
     },
