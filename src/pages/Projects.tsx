@@ -58,7 +58,8 @@ export function Projects() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
     }
   };
@@ -71,7 +72,7 @@ export function Projects() {
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 10
+        damping: 15
       }
     }
   };
@@ -95,16 +96,16 @@ export function Projects() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            transition={{ duration: 0.6, type: "spring" }}
+            className="text-center mb-16"
           >
-            <h1 className={`text-5xl font-bold mb-4 ${
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${
               theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
             }`}>{t('projects.title')}</h1>
-            <div className={`w-24 h-1 mx-auto rounded-full mb-8 ${
-              theme === 'dark' ? 'bg-blue-500' : 'bg-blue-600'
+            <div className={`w-32 h-1.5 mx-auto rounded-full mb-8 ${
+              theme === 'dark' ? 'bg-gradient-to-r from-blue-500 to-purple-500' : 'bg-gradient-to-r from-blue-600 to-purple-600'
             }`} />
-            <p className={`text-lg max-w-2xl mx-auto ${
+            <p className={`text-lg md:text-xl max-w-2xl mx-auto ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
             }`}>
               {t('projects.subtitle')}
@@ -115,12 +116,12 @@ export function Projects() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between"
+            className="mb-12 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between"
           >
             <div className={`relative flex-1 max-w-md ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
             }`}>
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 opacity-60" />
               <input
                 type="text"
                 placeholder={t('projects.searchPlaceholder')}
@@ -172,7 +173,7 @@ export function Projects() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-max"
           >
             {filteredRepos.map((repo) => (
               <motion.div
@@ -294,14 +295,22 @@ export function Projects() {
 
           {filteredRepos.length === 0 && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="text-center py-16"
             >
-              <GitBranch className={`w-16 h-16 mx-auto mb-4 ${
+              <motion.div
+                animate={{
+                  rotate: [0, 10, -10, 0],
+                  transition: { duration: 2, repeat: Infinity }
+                }}
+              >
+                <GitBranch className={`w-20 h-20 mx-auto mb-6 ${
                 theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
               }`} />
-              <p className={`text-lg ${
+              </motion.div>
+              <p className={`text-xl ${
                 theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
               }`}>
                 {t('projects.noProjects')}

@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 interface AnimatedTextProps {
   text: string;
   className?: string;
+  // Add optional style prop
+  style?: React.CSSProperties;
 }
 
-export function AnimatedText({ text, className = '' }: AnimatedTextProps) {
+export function AnimatedText({ text, className = '', style }: AnimatedTextProps) {
   const words = text.split(' ');
 
   const container = {
@@ -43,6 +45,7 @@ export function AnimatedText({ text, className = '' }: AnimatedTextProps) {
       initial="hidden"
       animate="visible"
       className={className}
+      style={style} // Apply the style prop
     >
       {words.map((word, idx) => (
         <motion.span

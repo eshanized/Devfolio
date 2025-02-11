@@ -9,7 +9,6 @@ import {
   Clock,
   MessageCircle,
   Heart,
-  ExternalLink,
   Tag,
   BookOpen,
   Search,
@@ -41,14 +40,6 @@ export function Articles() {
     const matchesTag = !selectedTag || article.tag_list.includes(selectedTag);
     return matchesSearch && matchesTag;
   });
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   const getDefaultImage = (title: string) => {
     const hash = title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);

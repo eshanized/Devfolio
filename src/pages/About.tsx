@@ -70,9 +70,9 @@ export function About() {
       ? t('about.companies.meta')
       : t('about.companies.facebook');
     
-    const descriptions = work.company === 'Meta'
+    const descriptions = (work.company === 'Meta'
       ? t('about.workDescriptions.meta', { returnObjects: true })
-      : t('about.workDescriptions.facebook', { returnObjects: true });
+      : t('about.workDescriptions.facebook', { returnObjects: true })) as string[];
 
     return { position, company, descriptions };
   };

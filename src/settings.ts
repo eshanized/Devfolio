@@ -41,7 +41,7 @@ export const settings = {
   features: {
     enableTranslation: true, // Set to false to disable translation feature
     defaultLanguage: 'en',
-    availableLanguages: ['en', 'bn'], // Only English and Bengali
+    availableLanguages: ['en', 'bn', 'hi'], // Added Hindi
   } as Features,
   emailjs: {
     serviceId: 'YOUR_SERVICE_ID',
