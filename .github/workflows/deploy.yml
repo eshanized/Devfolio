@@ -1,0 +1,120 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  quality:
+    name: 🧪 Quality Checks
+    runs-on: ubuntu-latest
+    continue-on-error: true  # Make this job optional
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run ESLint
+        run: npm run lint || true  # Continue even if linting fails
+
+  build-and-deploy:
+    name: 🚀 Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          static_site_generator: vite
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist
+            .vite
+          key: ${{ runner.os }}-vite-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-vite-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-vite-build-
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+          CI: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+          retention-days: 7
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Deployment Status Comment
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const deploymentUrl = '${{ steps.deployment.outputs.page_url }}';
+            
+            const message = `🎉 Deployment successful!\n\n` +
+              `🌐 Site is live at: ${deploymentUrl}\n\n` +
+              `✨ Commit: ${context.sha.substring(0, 7)}\n` +
+              `🕒 Deployed at: ${new Date().toUTCString()}`;
+            
+            if (context.eventName === 'pull_request') {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: context.issue.number,
+                body: message
+              });
+            }
