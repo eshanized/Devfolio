@@ -51,17 +51,10 @@ export default defineConfig(({ command, mode }): UserConfig => {
       assetsDir: 'assets',
       rollupOptions: {
         output: {
-          // Ensure consistent file naming
-          entryFileNames: 'assets/[name].[hash].mjs',
-          chunkFileNames: 'assets/[name].[hash].mjs',
-          assetFileNames: (assetInfo) => {
-            const info = assetInfo.name.split('.');
-            const ext = info[info.length - 1];
-            if (/\.(css)$/i.test(assetInfo.name)) {
-              return `assets/styles.[hash].${ext}`;
-            }
-            return `assets/[name].[hash].${ext}`;
-          },
+          // GitHub Pages friendly output
+          entryFileNames: 'assets/[name].[hash].js',
+          chunkFileNames: 'assets/[name].[hash].js',
+          assetFileNames: 'assets/[name].[hash].[ext]'
         },
       },
     },

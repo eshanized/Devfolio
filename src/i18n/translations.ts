@@ -114,6 +114,17 @@ export const translations = {
         noArticles: 'No articles found matching your criteria',
         readTime: '{{time}} min read',
         readArticle: 'Read Article'
+      },
+      footer: {
+        linesOfCode: "lines of code",
+        madeWith: "Made with",
+        by: "by",
+        languages: {
+          TypeScript: "TypeScript",
+          JavaScript: "JavaScript",
+          CSS: "CSS",
+          HTML: "HTML"
+        }
       }
     }
   },
@@ -232,6 +243,17 @@ export const translations = {
         noArticles: 'আপনার মানদণ্ড অনুযায়ী কোন নিবন্ধ পাওয়া যায়নি',
         readTime: '{{time}} মিনিট পড়ার সময়',
         readArticle: 'নিবন্ধ পড়ুন'
+      },
+      footer: {
+        linesOfCode: "লাইন কোড",
+        madeWith: "তৈরি করেছেন",
+        by: "দ্বারা",
+        languages: {
+          TypeScript: "টাইপস্ক্রিপ্ট",
+          JavaScript: "জাভাস্ক্রিপ্ট",
+          CSS: "সিএসএস",
+          HTML: "এইচটিএমএল"
+        }
       }
     }
   }

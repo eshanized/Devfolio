@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { Heart, Code2, FileJson, FileType, File as FileHtml, Palette } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface LanguageStats {
   name: string;
@@ -12,28 +13,29 @@ interface LanguageStats {
 
 export function Footer() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
   const [stats] = useState<LanguageStats[]>([
     { 
-      name: 'TypeScript',
+      name: t('footer.languages.TypeScript'),
       lines: 2150,
       icon: FileType,
       color: theme === 'dark' ? '#3178C6' : '#235A97'
     },
     { 
-      name: 'JavaScript',
+      name: t('footer.languages.JavaScript'),
       lines: 180,
       icon: FileJson,
       color: theme === 'dark' ? '#F7DF1E' : '#C9B306'
     },
     { 
-      name: 'CSS',
+      name: t('footer.languages.CSS'),
       lines: 120,
       icon: Palette,
       color: theme === 'dark' ? '#38BDF8' : '#2563EB'
     },
     { 
-      name: 'HTML',
+      name: t('footer.languages.HTML'),
       lines: 90,
       icon: FileHtml,
       color: theme === 'dark' ? '#E34F26' : '#C4432D'
